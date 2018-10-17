@@ -21,8 +21,17 @@ def normalizer(data):
         temp.append(max(array))
     minimum=min(temp)
     maximum=max(temp)
-    data=[[(x-minimum)/(maximum-minimum)for x in array] for array in data]
+    data=[[gradient((x-minimum)/(maximum-minimum))for x in array] for array in data]
     return data
+
+def normalcalculator(data):
+    normals=[]
+    for i in range(1,len(data)-1):
+        temparray=[]
+        for j in range(1,len(data[0])-1):
+            data[i][j]
+
+
 def gradient(x):
     colour1=(10/30,1,0.8)
     colour2=(6/36,1,1)
@@ -33,12 +42,6 @@ def gradient(x):
         return interpolator(hsv_to_rgb(colour2), hsv_to_rgb(colour3), (x - 1/2) * 2)
 
 
-def imgtogradient(data):
-    img=[[gradient(x)for x in array] for array in data]
-    #print(img)
-    return img
-
-
 
 
 if __name__ == '__main__':
@@ -46,7 +49,7 @@ if __name__ == '__main__':
     #img=plt.imshow(data,cmap='nipy_spectral',clim=(-80,170), interpolation='nearest')
     #print(img)
     #plt.colorbar()
+
     data = normalizer(data)
-    img = imgtogradient(data)
-    plt.imshow(img)
+    plt.imshow(data)
     plt.show()
