@@ -30,7 +30,7 @@
     <session id="631613268">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
@@ -80,9 +80,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+            <state relative-caret-position="136">
+              <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
               <folding>
+                <element signature="e#0#31#0" expanded="true" />
                 <marker date="1539780381536" expanded="true" signature="797:1057" ph="..." />
                 <marker date="1539780381536" expanded="true" signature="1081:1173" ph="..." />
               </folding>
@@ -113,6 +114,9 @@
       <find>827155</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -132,6 +136,7 @@
     <option name="width" value="980" />
     <option name="height" value="1031" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -243,14 +248,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.11578947" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3291815" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3291815" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -266,7 +270,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" auto_hide="true" x="570" y="162" width="653" height="504" id="SciView" order="3" show_stripe_button="false" type="FLOATING" weight="0.19838056" />
       <window_info anchor="right" x="0" y="0" width="273" height="495" id="Documentation" order="4" side_tool="true" weight="0.32955465" />
-      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.1319838" />
+      <window_info active="true" anchor="right" id="Database" order="5" visible="true" weight="0.1319838" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,9 +299,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        <state relative-caret-position="136">
+          <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
           <folding>
+            <element signature="e#0#31#0" expanded="true" />
             <marker date="1539780381536" expanded="true" signature="797:1057" ph="..." />
             <marker date="1539780381536" expanded="true" signature="1081:1173" ph="..." />
           </folding>
