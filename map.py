@@ -20,7 +20,7 @@ def normalize(x):
     return x
 
 def calcangle(a):
-    b=(0, 0.447214, 0.894427)
+    b=(-0.1, 0.447214, 0.894427)
     return (a[0]*b[0]+a[1]*b[1]+a[2]*b[2])/(math.sqrt(a[0]**2+a[1]**2+a[2]**2)*math.sqrt(b[0]**2+b[1]**2+b[2]**2))
 
 def colorizer(data,angles):
@@ -36,11 +36,12 @@ def colorizer(data,angles):
             #    data[i][j]=gradient((data[i][j] - minimum) / (maximum - minimum), 1 *angles[i][j], 1)
             #else:
             #    data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, 1/abs(angles[i][j]))
-
-            if (angles[i][j]) > 0:
-                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1*(angles[i][j])**2, 1 / (1/(angles[i][j])**4)+0.1)
+            if (angles[i][j]) < 0.95:
+                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, angles[i][j]**1.5)
+            elif((angles[i][j])<1):
+                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), ((1-angles[i][j])/0.05), 1)
             else:
-                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, 1 )
+                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, 1)
     return data
 
 def crossvectors(a,b,c,d):
@@ -49,12 +50,13 @@ def crossvectors(a,b,c,d):
 def normalcalculator(data):
     normals=[]
     angles=[]
+    odleglosc=20
     angles.append(np.ones((len(data[0]))))
     for i in range(1,len(data)-1):
         tempnormals=[]
         tempangles=[1]
         for j in range(1,len(data[0])-1):
-            tempnormals.append(crossvectors((75.31,0,data[i][j+1]),(0,75.31,data[i-1][j]),(-75.31,0,data[i][j-1]),(0,-75.31,data[i+1][j])))
+            tempnormals.append(crossvectors((odleglosc,0,data[i][j+1]-data[i][j]),(0,odleglosc,data[i-1][j]-data[i][j]),(-odleglosc,0,data[i][j-1]-data[i][j]),(0,-odleglosc,data[i+1][j]-data[i][j])))
             tempangles.append(calcangle(tempnormals[j-1]))
         tempangles.append(1);
         angles.append(tempangles)
