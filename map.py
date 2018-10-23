@@ -37,7 +37,7 @@ def colorizer(data,angles):
             #else:
             #    data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, 1/abs(angles[i][j]))
             if (angles[i][j]) < 0.95:
-                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, angles[i][j]**1.5)
+                data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), 1, angles[i][j]**1.7)
             elif((angles[i][j])<1):
                 data[i][j] = gradient((data[i][j] - minimum) / (maximum - minimum), ((1-angles[i][j])/0.05), 1)
             else:
