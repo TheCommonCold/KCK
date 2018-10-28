@@ -31,20 +31,22 @@ def imageprocessor(data):
     data=sci.ndimage.filters.convolve(data,K)
     p1, p2 = np.percentile(data, (2, 34))
     data= exposure.rescale_intensity(data, in_range=(p1, p2))
+    data = exposure.adjust_gamma(data, 1)
+    #p1, p2 = np.percentile(data, (0, 20))
+    #data = exposure.rescale_intensity(data, in_range=(p1, p2))
     data =np.array([[(x[2]) for x in array] for array in data])
-    data = gamma_filter(data)
     #data2 = filters.sobel(data)
     data=cutting(data)
-    for i in range(int(data.shape[1]/120)):
+    for i in range(5+int((data.shape[0]+data.shape[1])/220)):
         data = mp.erosion(data)
     return data
 
 def cutting(data):
     for i in range(len(data)):
         for j in range(len(data[0])):
-            if (data[i][j] < 0.35):
+            if (data[i][j] < 0.34):
                 data[i][j]=data[i][j]/2
-            if (data[i][j] > 0.35):
+            if (data[i][j] > 0.34):
                 data[i][j] = data[i][j]*2
             if(data[i][j]>1):
                 data[i][j] =1
@@ -67,19 +69,11 @@ def imagecompiler(data1,data2):
                 data1[i][j][2] = data1[i][j][2]+data2[i][j]
     return data1
 
-def gamma_filter(img):
-    MIN = 0.4628
-    MAX = 0.9746
-    gamma_MIN = 0.2
-    gamma_MAX = 0.7
-    mean = np.mean(img)
-    gamma = (mean-MIN)*((gamma_MAX - gamma_MIN)/(MAX-MIN)) + gamma_MIN
-    return img**gamma
 
 if __name__ == '__main__':
     finaldata=[]
     columns = 2
-    rows = 11
+    rows = 21
     fig = plt.figure(figsize=(20, 80))
     i = 1
     for nazwa in nazwy:
@@ -89,9 +83,12 @@ if __name__ == '__main__':
         #data = imagecompiler(data, imageprocessor(data))
         #data=hsv2rgb(data)
         data_processed=imageprocessor(data)
-        contours = measure.find_contours(data_processed, 0.7)
+        contours = measure.find_contours(data_processed, 0.4)
         ax=fig.add_subplot(rows, columns, i)
         plt.imshow(data_processed)
+        i = i + 1
+        ax = fig.add_subplot(rows, columns, i)
+        plt.imshow(data)
         ax.axis('image')
         for n, contour in enumerate(contours):
             centroid = np.sum(contour, axis=0)/len(contour)
