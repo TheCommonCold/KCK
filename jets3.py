@@ -31,15 +31,26 @@ def imageprocessor(data):
     data=sci.ndimage.filters.convolve(data,K)
     p1, p2 = np.percentile(data, (2, 34))
     data= exposure.rescale_intensity(data, in_range=(p1, p2))
-    data = exposure.adjust_gamma(data, 1)
+    data = exposure.adjust_gamma(data, 1.1)
     #p1, p2 = np.percentile(data, (0, 20))
     #data = exposure.rescale_intensity(data, in_range=(p1, p2))
     data =np.array([[(x[2]) for x in array] for array in data])
+    data_sobel=filters.sobel(data)
+    for i in range(3):
+        data_sobel = mp.dilation(data_sobel)
+    data=border(data,data_sobel)
     #data2 = filters.sobel(data)
     data=cutting(data)
-    for i in range(5+int((data.shape[0]+data.shape[1])/220)):
+    for i in range(2+int((data.shape[0]+data.shape[1])/250)):
         data = mp.erosion(data)
     return data
+
+def border(data1,data2):
+    for i in range(len(data)):
+        for j in range(len(data[0])):
+            if(data2[i][j]>0.18):
+                data1[i][j]=0;
+    return data1
 
 def cutting(data):
     for i in range(len(data)):
@@ -91,8 +102,9 @@ if __name__ == '__main__':
         plt.imshow(data)
         ax.axis('image')
         for n, contour in enumerate(contours):
-            centroid = np.sum(contour, axis=0)/len(contour)
-            ax.plot(contour[:, 1], contour[:, 0], linewidth=2)
-            ax.plot(centroid[1], centroid[0], marker='o', markersize=5, color="white")
+            if(len(contour)>400):
+                centroid = np.sum(contour, axis=0)/len(contour)
+                ax.plot(contour[:, 1], contour[:, 0], linewidth=2)
+                ax.plot(centroid[1], centroid[0], marker='o', markersize=5, color="white")
         i=i+1
     io.show()
